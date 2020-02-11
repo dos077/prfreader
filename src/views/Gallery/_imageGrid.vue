@@ -1,0 +1,62 @@
+<template>
+  <div class="image-grid mt-1 ml-1">
+    <image-grid-cell
+      v-for="(image, index) in images"
+      :key="image.src"
+      :image="image"
+      @openImage="imgIndex = index"
+    />
+    <image-pop-up
+      :image="currentImg"
+      :images="images"
+      :img-index="imgIndex"
+      @close="imgIndex = null"
+    />
+  </div>
+</template>
+
+<script>
+import ImageGridCell from './_imageGridCell.vue'
+import ImagePopUp from './_imagePopUp.vue'
+
+export default {
+  name: 'ImageGrid',
+  components: {
+    ImageGridCell,
+    ImagePopUp
+  },
+  props: {
+    images: Array
+  },
+  data() {
+    return {
+      imgIndex: null
+    }
+  },
+  computed: {
+    currentImg() {
+      if (this.imgIndex !== null) {
+        return this.images[this.imgIndex]
+      }
+      return null
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 769px) {
+    padding: 8px;
+    &:after {
+      content: '';
+      flex-grow: 9999999;
+    }
+  }
+}
+</style>

@@ -1,18 +1,36 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <router-view></router-view>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import { mapActions, mapState } from 'vuex'
 
 export default {
-  name: "home",
-  components: {
-    HelloWorld
+  name: 'UserPage',
+
+  computed: {
+    ...mapState('alias', { currentProfile: 'current' }),
+    isDesktop() {
+      return this.$vuetify.breakpoint.mdAndUp
+    },
+    alias() {
+      return this.$route.params.alias
+    }
+  },
+
+  watch: {
+    alias: {
+      async handler(to, from) {
+        if (!from || to !== from) await this.readAlias(to)
+        if (!this.currentProfile || !this.currentProfile.userId) this.$router.push('/')
+      },
+      immediate: true
+    }
+  },
+  
+  methods: {
+    ...mapActions('alias', { readAlias: 'read' })
   }
-};
+}
 </script>
+
