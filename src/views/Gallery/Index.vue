@@ -1,12 +1,12 @@
 <template>
-  <nav-content :title="'Photography'" :bg-color="'#283593'">
+  <nav-content :title="collectionName" :bg-color="color">
     <template v-slot:nav>
       <v-tabs
         v-model="tab"
         :vertical="isDesktop"
         grow
         background-color="rgba(0,0,0,0)"
-        :slider-size="isDesktop ? '0' : '2'"
+        slider-size="0"
         active-class="current"
         style="justify-content: center;"
       >
@@ -36,7 +36,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('galleries', { galleries: 'items' }),
+    ...mapState('galleries', { galleries: 'items', collectionName: 'collectionName', color: 'color' }),
     isDesktop() {
       return this.$vuetify.breakpoint.mdAndUp
     }

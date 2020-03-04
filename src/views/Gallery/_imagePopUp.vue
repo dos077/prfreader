@@ -59,7 +59,14 @@
         <v-container>
           <v-row>
             <v-col>
-              <p>{{ images[carouselIndex].caption }}</p>
+              <p>
+                <span class="title">
+                  {{ images[carouselIndex].title }}
+                </span>
+                <span class="caption">
+                  {{ images[carouselIndex].caption }}
+                </span>
+              </p>
             </v-col>
           </v-row>
         </v-container>

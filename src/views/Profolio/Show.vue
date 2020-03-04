@@ -15,13 +15,13 @@
       <v-row>
         <v-col>
           <div ref="caption" class="sticky-caption">
-            <span class="display-3">{{ project.name }}</span>
+            <div class="blocks display-3">{{ project.name }}</div>
             <div></div>
-            <span v-if="project.github || project.demo">
-              <v-btn v-if="project.github" text :to="project.github">Github</v-btn>
+            <div v-if="project.github || project.demo" class="blocks">
+              <v-btn v-if="project.github" text :href="project.github">Github</v-btn>
               <v-divider vertical></v-divider>
               <v-btn v-if="project.demo" text :href="project.demo">Live Demo</v-btn>
-            </span>
+            </div>
           </div>
         </v-col>
       </v-row>
@@ -105,7 +105,7 @@ export default {
   position: relative;
   z-index: 1;
   padding-bottom: 2rem;
-  span {
+  .blocks {
     display: inline-block;
     padding: 4px 4px 6px;
     margin-bottom: 16px;

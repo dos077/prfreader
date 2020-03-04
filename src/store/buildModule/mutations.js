@@ -5,5 +5,10 @@ export default () => ({
 
   setCurrent: (state, item) => (state.current = item),
 
-  setCreationPending: (state, status) => (state.creationPending = status)
+  setCreationPending: (state, status) => (state.creationPending = status),
+
+
+  setName: (state, name) => (state.collectionName = name),
+  
+  setColor: (state, color) => (state.color = color),
 })

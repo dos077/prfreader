@@ -1,5 +1,5 @@
 <template>
-  <div class="title-bar" style="background-color: #212121;">
+  <div class="title-bar" :class="{ mobile: !isDesktop }">
     <v-app-bar-nav-icon large dark @click="$emit('toggleDrawer')">
     </v-app-bar-nav-icon>
   </div>
@@ -7,21 +7,30 @@
 
 <script>
 export default {
-  name: 'TitleBar'
+  name: 'TitleBar',
+  computed: {
+    isDesktop() {
+      return this.$vuetify.breakpoint.mdAndUp
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .title-bar {
-  position: sticky;
+  position: absolute;
   z-index: 5;
   top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
-  height: 100%;
-  max-height: 100vh;
   padding: 12px;
+  width: 72px;
+  height: 100vh;
+  &.mobile {
+    width: 100vw;
+    height: 64px;
+  }
 }
 </style>

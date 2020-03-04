@@ -4,5 +4,7 @@ export default () => ({
   nameToCreate: '',
   deletionPending: [],
   creationPending: false,
-  updatePending: []
+  updatePending: [],
+  collectionName: null,
+  color: 'grey'
 })

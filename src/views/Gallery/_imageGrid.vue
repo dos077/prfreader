@@ -48,15 +48,10 @@ export default {
 .image-grid {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1280px;
   margin: 0 auto;
 
   @media screen and (min-width: 769px) {
     padding: 8px;
-    &:after {
-      content: '';
-      flex-grow: 9999999;
-    }
   }
 }
 </style>

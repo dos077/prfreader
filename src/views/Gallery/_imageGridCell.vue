@@ -4,18 +4,20 @@
       class="mr-1 mb-1"
       :class="{ 'elevation-8': hover }"
       :aspect-ratio="containerAspect"
-      max-width="100%"
-      min-width="33%"
+      max-width="540px"
+      width="33%"
+      min-width="180px"
+      max-height="600px"
       :src="image.src"
       @click="$emit('openImage')"
       @load="getImgDimension"
       ref="img"
     >
-      <v-expand-transition v-if="hover">
+      <v-fade-transition v-if="hover">
         <div v-if="image.title" class="caption">
           <span class="display-1">{{ image.title }}</span>
         </div>
-      </v-expand-transition>
+      </v-fade-transition>
     </v-img>
   </v-hover>
 </template>

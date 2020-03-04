@@ -3,10 +3,10 @@
     id="maindiv"
     :class="{ content: true, vertical: !isDesktop, horizontal: isDesktop }"
   >
-    <section class="nav" :style="`background-color: ${bgColor}`">
+    <section class="nav" :class="`${bgColor} darken-2`">
       <v-card flat dark color="rgba(0, 0, 0, 0)">
         <v-card-title>
-          <h1 class="display-2 mb-4">
+          <h1 class="display-2 mb-2">
             {{ title }}
           </h1>
         </v-card-title>
@@ -40,21 +40,27 @@ export default {
   display: grid;
   &.vertical {
     grid-template-columns: 1fr;
-    grid-template-rows: 168px auto;
+    grid-template-rows: 212px auto;
     section {
       width: 100%;
+    }
+    .nav {
+      padding-top: 48px;
     }
   }
   &.horizontal {
     height: 100%;
-    grid-template-columns: 384px auto;
+    grid-template-columns: 412px auto;
     section {
       height: 100%;
     }
     .nav {
       position: sticky;
       top: 0;
-      padding: 8vh 0 16vh;
+      padding: 8vh 16px 16vh 52px;
+    }
+    .main {
+      height: 100vh;
     }
   }
   .nav {
@@ -67,6 +73,9 @@ export default {
   }
   .current {
     color: white;
+  }
+  .main {
+    overflow-y: scroll;
   }
 }
 </style>

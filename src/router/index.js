@@ -57,6 +57,12 @@ const routes = [
     ]
   },
   {
+    path: '/:alias/profile',
+    component: () =>
+      import(/* webpackChunkName: "profile" */ '@/views/Profile/Index.vue'),
+      beforeEnter: aliasVerify
+  },
+  {
     path: '/',
     name: 'noalias',
     component: Notfound

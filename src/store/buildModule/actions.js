@@ -19,5 +19,13 @@ export default ({ loadCollectionDB }) => {
       commit('setCreationPending', false)
     },
 
+    readMeta: async ({ rootState, commit }) => {
+      const collectionDB = loadCollectionDB({ rootState })
+      const meta = await collectionDB.getMeta()
+      if (meta) {
+        if (meta.name) commit('setName', meta.name)
+        if (meta.color) commit('setColor', meta.color)
+      }
+    }
   }
 }

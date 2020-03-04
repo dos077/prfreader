@@ -23,6 +23,15 @@ const convertObjectTimestampPropertiesToDate = (obj) => {
 }
 
 export default (collectionPath) => {
+  const getMeta = async () => {
+    const res = await (await firestore())
+      .collection(collectionPath)
+      .doc('meta')
+      .get()
+    const data = res.exists ? res.data() : null
+    return data
+  }
+
   const read = async (id) => {
     const res = await (await firestore())
       .collection(collectionPath)
@@ -55,8 +64,8 @@ export default (collectionPath) => {
         })
       )
     
-    return formatResult(await query.get())
+    return formatResult(await query.get()).filter(({ id }) => id !== 'meta')
   }
 
-  return { read, readAll }
+  return { getMeta, read, readAll }
 }
