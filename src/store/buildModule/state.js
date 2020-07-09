@@ -1,5 +1,5 @@
 export default () => ({
-  items: null,
+  items: [],
   current: undefined,
   nameToCreate: '',
   deletionPending: [],

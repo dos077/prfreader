@@ -63,6 +63,10 @@ const routes = [
       beforeEnter: aliasVerify
   },
   {
+    path: '/:alias/',
+    redirect: '/:alias/profile'
+  },
+  {
     path: '/',
     name: 'noalias',
     component: Notfound

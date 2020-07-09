@@ -1,5 +1,9 @@
 <template>
-  <nav-content :title="'DJ Snake'" :bg-color="'#616161'" ref="container">
+  <nav-content
+    :title="user.displayName"
+    ref="container"
+    :bg-color="color"
+  >
     <template v-slot:nav>
       <v-tabs
         :value="focusIndex"
@@ -11,7 +15,7 @@
         style="justify-content: center;"
       >
         <v-tab
-          v-for="(section, index) in profile.sections"
+          v-for="(section, index) in sections"
           :key="section.id"
           @click="focusIndex = index"
         >
@@ -21,12 +25,12 @@
     </template>
     <template v-slot:content>
       <v-container style="width: 90%; max-width: 50rem">
-        <v-row v-for="(section, index) in profile.sections" :key="section.id" ref="sections">
+        <v-row v-for="(section, index) in sections" :key="section.id" ref="sections">
           <v-col cols="12">
             <chips-section v-if="section.chips" :section="section" :focus="index === focusIndex" />
             <lines-section v-if="section.lines" :section="section" :focus="index === focusIndex" />
           </v-col>
-          <v-col v-if="index < profile.sections.length - 1" cols="12">
+          <v-col v-if="index < sections.length - 1" cols="12">
             <v-divider class="my-2" />
           </v-col>
         </v-row>
@@ -36,7 +40,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import timeout from '@/helpers/timeout'
 import NavContent from '@/views/components/NavContent.vue'
 import ChipsSection from './_chips.vue'
@@ -55,12 +59,24 @@ export default {
     watchScroll: true
   }),
   computed: {
-    ...mapState('alias', { profile: 'current' }),
+    ...mapState('alias', { user: 'current' }),
+    ...mapState('profile', { sections: 'items', color: 'color' }),
     isDesktop() {
       return this.$vuetify.breakpoint.mdAndUp
     }
   },
   watch: {
+    alias: {
+      async handler() {
+        await this.readProfileMeta()
+        await this.readProfile()
+        this.getScrollPb()
+        this.scrollFocus()
+        window.addEventListener('resize', this.getScrollPb)
+        window.addEventListener('scroll', this.scrollFocus)
+      },
+      immediate: true
+    },
     async focusIndex(to) {
       this.watchScroll = false
       await this.$vuetify.goTo(this.scrollPoints[to])
@@ -68,17 +84,12 @@ export default {
       this.watchScroll = true
     }
   },
-  mounted() {
-    this.getScrollPb()
-    this.scrollFocus()
-    window.addEventListener('resize', this.getScrollPb)
-    window.addEventListener('scroll', this.scrollFocus)
-  },
   destroyed() {
     window.removeEventListener('resize', this.getScrollPb)
     window.removeEventListener('scroll', this.scrollFocus)
   },
   methods: {
+    ...mapActions('profile', { readProfile: 'getAll', readProfileMeta: 'readMeta' }),
     getScrollPb() {
       this.scrollPoints = []
       const points = this.scrollPoints

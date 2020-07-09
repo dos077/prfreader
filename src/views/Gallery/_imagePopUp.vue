@@ -1,5 +1,10 @@
 <template>
-  <v-overlay :value="imgIndex !== null" opacity="1" z-index="9">
+  <v-overlay
+    :value="imgIndex !== null"
+    opacity="1"
+    z-index="9"
+    @keyup="checkKey"
+  >
     <v-card
       v-if="imgIndex !== null"
       tile
@@ -92,6 +97,8 @@ export default {
     imgIndex: {
       handler(newIndex) {
         this.carouselIndex = newIndex
+        if (newIndex === null) window.removeEventListener('keyup', this.checkKey)
+        else window.addEventListener('keyup', this.checkKey)
       },
       immediate: true
     }
@@ -104,6 +111,10 @@ export default {
     prevImg() {
       if (this.carouselIndex > 0) this.carouselIndex -= 1
       else this.carouselIndex = this.images.length - 1
+    },
+    checkKey(e) {
+      if (e.keyCode === 37) this.prevImg()
+      else if (e.keyCode === 39) this.nextImg() 
     }
   }
 }
