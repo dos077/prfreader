@@ -60,7 +60,7 @@ export default {
       padding: 8vh 16px 16vh 52px;
     }
     .main {
-      height: 100vh;
+      height: auto;
     }
   }
   .nav {
@@ -73,9 +73,6 @@ export default {
   }
   .current {
     color: white;
-  }
-  .main {
-    overflow-y: scroll;
   }
 }
 </style>
