@@ -1,14 +1,10 @@
 <template>
-  <v-card
-    :dark="!focus"
-    :flat="!focus"
-    :color="focus ? '' : color"
-  >
+  <v-card :outlined="!focus" >
     <v-toolbar
-      :color="focus ? `${color} lighten-4` : color"
-      :class="{ 'text--primary': focus }"
+      :color="focus ? `${color} lighten-4` : ''"
+      :class="{ 'text--primary': focus, 'outfocus': !focus }"
       flat
-      :dark="!focus"
+      light
     >
       <h2 class="title">{{ section.name }}</h2>
     </v-toolbar>
@@ -17,10 +13,11 @@
         <v-chip
           v-for="(chip, index) in section.chips"
           :key="index"
-          :color="focus ? `${color} lighten-4` : `${color} darken-1`"
+          :color="focus ? `${color} lighten-4` : `${color} lighten-5`"
           class="ma-2"
         >
-          <v-icon v-if="chip.icon" class="mr-2">{{ chip.icon }}</v-icon>{{ chip.text }}
+          <v-icon v-if="chip.icon" class="mr-2" :class="{ 'outfocus': !focus }">{{ chip.icon }}</v-icon>
+          <span :class="{ 'outfocus': !focus }">{{ chip.text }}</span>
         </v-chip>
       </v-chip-group>
     </v-card-text>
@@ -41,3 +38,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.outfocus {
+  color: #424242;
+  h2 {
+    color: #616161;
+  }
+}
+</style>

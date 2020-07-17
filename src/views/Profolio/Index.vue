@@ -4,7 +4,7 @@
       <v-tabs
         v-model="tab"
         :vertical="isDesktop"
-        grow
+        center-active
         background-color="rgba(0,0,0,0)"
         slider-size="0"
         active-class="current"

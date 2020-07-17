@@ -103,13 +103,14 @@ export default {
       this.scrollPoints = []
       const points = this.scrollPoints
       const { scrollY } = window
+      const topOffset = this.isDesktop ? 0 : 64
       this.$refs.sections.forEach((section, index) => {
-        points[index] = scrollY + Math.floor(section.getBoundingClientRect().y)
+        points[index] = scrollY + Math.floor(section.getBoundingClientRect().y) - topOffset
       })
     },
     checkScroll() {
-      const yPreem = 72
-      if (this.isLoopOn && this.watchScroll) {
+      const yPreem = 96
+      if (this.watchScroll) {
         const { scrollY } = window
         if (this.$refs.wrapper.getBoundingClientRect().bottom < yPreem) {
           this.focusIndex = 0
@@ -126,18 +127,25 @@ export default {
             }
           })
         }
-        const cloneTop = this.$refs.clones.getBoundingClientRect().y
-        if (cloneTop < 0) return window.scrollTo(0, 1)
-        const wrapperBottom = this.$refs.wrapper.getBoundingClientRect().bottom
-        if (scrollY === 0) return window.scrollTo(0, wrapperBottom)
+        if (this.isLoopOn) {
+          const topLimit = this.isDesktop ? 0 : 64
+          const cloneTop = this.$refs.clones.getBoundingClientRect().y
+          if (cloneTop < topLimit) {
+            const yTarget = this.isDesktop ? 1 : 288
+            return window.scrollTo(0, yTarget)
+          }
+          const wrapperBottom = this.$refs.wrapper.getBoundingClientRect().bottom
+          if (this.isDesktop && scrollY === 0) return window.scrollTo(0, wrapperBottom)
+        }
       }
     },
-    checkViewSize() {
+    async checkViewSize() {
+      await wait(200)
       const winHeight = window.innerHeight
       const docHeight = this.$refs.wrapper.offsetHeight
+      this.getScrollPb()
       if (docHeight > winHeight) {
         this.isLoopOn = true
-        this.getScrollPb()
         let cloneHeight = this.scrollPoints[0]
         let index = 0
         while(cloneHeight < winHeight) {
@@ -152,12 +160,10 @@ export default {
     async tabFocus(index) {
       if (this.watchScroll && index !== this.focusIndex) {
         this.focusIndex = index
-        if (this.isLoopOn) {
-          this.watchScroll = false
-          await this.$vuetify.goTo(this.scrollPoints[index])
-          await wait(100)
-          this.watchScroll = true
-        }
+        this.watchScroll = false
+        await this.$vuetify.goTo(this.scrollPoints[index])
+        await wait(100)
+        this.watchScroll = true
       }
     },
   }

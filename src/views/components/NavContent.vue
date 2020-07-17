@@ -42,9 +42,11 @@ export default {
     grid-template-columns: 1fr;
     grid-template-rows: 212px auto;
     section {
-      width: 100%;
+      width: auto;
     }
     .nav {
+      top: -146px;
+      z-index: 2;
       padding-top: 48px;
     }
   }
@@ -55,7 +57,6 @@ export default {
       height: 100%;
     }
     .nav {
-      position: sticky;
       top: 0;
       padding: 8vh 16px 16vh 52px;
     }
@@ -64,6 +65,7 @@ export default {
     }
   }
   .nav {
+    position: sticky;
     display: flex;
     max-height: 100vh;
     padding-right: 16px;

@@ -1,10 +1,9 @@
 <template>
-  <v-card :color="focus ? '' : color" :light="focus" :flat="!focus">
+  <v-card :outlined="!focus">
     <v-toolbar
-      :color="focus ? `${color} lighten-4` : color"
-      :class="{ 'text--primary': focus }"
+      :color="focus ? `${color} lighten-4` : ''"
+      :class="{ 'text--primary': focus, 'outfocus': !focus }"
       flat
-      :dark="!focus"
     >
       <h2 class="title">{{ section.name }}</h2>
     </v-toolbar>
@@ -56,7 +55,10 @@ export default {
     color: #424242;
   }
 }
-h2, h4, li {
-  color: #eeeeee;
+.outfocus {
+  color: #424242;
+  h2 {
+    color: #616161;
+  }
 }
 </style>
