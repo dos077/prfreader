@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     buildPath(gid) {
-      return `/${this.$route.params.alias}/galleries/${gid}`
+      return `/a/${this.$route.params.alias}/galleries/${gid}`
     }
   }
 }

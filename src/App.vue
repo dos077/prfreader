@@ -11,15 +11,15 @@
           </v-list-item-title>
         </v-list-item>
         <v-divider />
-        <v-list-item link :to="`/${alias.id}/profile`">
+        <v-list-item link :to="`/a/${alias.id}/profile`">
           <v-list-item-icon><v-icon>mdi-information</v-icon></v-list-item-icon>
           <v-list-item-title>About Me</v-list-item-title>
         </v-list-item>
-        <v-list-item link :to="`/${alias.id}/galleries`">
+        <v-list-item link :to="`/a/${alias.id}/galleries`">
           <v-list-item-icon><v-icon>mdi-image-multiple</v-icon></v-list-item-icon>
           <v-list-item-title>{{ galleriesCollectionName }}</v-list-item-title>
         </v-list-item>
-        <v-list-item link :to="`/${alias.id}/profolio`">
+        <v-list-item link :to="`/a/${alias.id}/profolio`">
           <v-list-item-icon><v-icon>mdi-post</v-icon></v-list-item-icon>
           <v-list-item-title>{{ profolioCollectionName }}</v-list-item-title>
         </v-list-item>

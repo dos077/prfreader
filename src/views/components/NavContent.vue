@@ -42,7 +42,7 @@ export default {
     grid-template-columns: 1fr;
     grid-template-rows: 212px auto;
     section {
-      width: auto;
+      max-width: 100vw;
     }
     .nav {
       top: -146px;

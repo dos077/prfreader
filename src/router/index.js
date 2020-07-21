@@ -4,15 +4,15 @@ import Notfound from '@/views/Notfound.vue'
 import store from '@/store'
 
 const aliasVerify = async (to, from, next) => {
-  if (to.path === '/') next()
+  if (to.path === '/') return next()
   const { alias } = to.params
-  if (alias == null) next('/')
+  if (alias == null) return next('/')
   if (alias === store.state.alias.id) {
-    next()
+    return next()
   }
   if (alias !== from.params.alias) {
     await store.dispatch('alias/read', alias)
-    if (!store.state.alias.current || !store.state.alias.current.userId) next('/')
+    if (!store.state.alias.current || !store.state.alias.current.userId) return next('/')
   }
   next()
 }
@@ -21,7 +21,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/:alias/galleries',
+    path: '/a/:alias/galleries',
     component: () =>
       import(/* webpackChunkName: "gallery" */ '@/views/Gallery/Index.vue'),
     beforeEnter: aliasVerify,
@@ -39,7 +39,7 @@ const routes = [
     ]
   },
   {
-    path: '/:alias/profolio',
+    path: '/a/:alias/profolio',
     component: () =>
       import(/* webpackChunkName: "profolio" */ '@/views/Profolio/Index.vue'),
     beforeEnter: aliasVerify,
@@ -57,14 +57,14 @@ const routes = [
     ]
   },
   {
-    path: '/:alias/profile',
+    path: '/a/:alias/profile',
     component: () =>
       import(/* webpackChunkName: "profile" */ '@/views/Profile/Index.vue'),
       beforeEnter: aliasVerify
   },
   {
-    path: '/:alias/',
-    redirect: '/:alias/profile'
+    path: '/a/:alias/',
+    redirect: '/a/:alias/profile'
   },
   {
     path: '/',
@@ -76,6 +76,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
+  base: process.env.BASE_URL,
   routes
 })
 

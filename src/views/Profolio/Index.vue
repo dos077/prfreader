@@ -47,7 +47,7 @@ export default {
   methods: {
     ...mapActions('profolio', { loadProfolio: 'getAll' }),
     buildPath(id) {
-      return `/${this.$route.params.alias}/profolio/${id}`
+      return `/a/${this.$route.params.alias}/profolio/${id}`
     }
   }
 }

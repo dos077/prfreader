@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     buildPath(pid) {
-      return `/${this.$route.params.alias}/profolio/${pid}`
+      return `/a/${this.$route.params.alias}/profolio/${pid}`
     }
   }
 }
