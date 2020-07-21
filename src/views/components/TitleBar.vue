@@ -10,7 +10,7 @@ export default {
   name: 'TitleBar',
   computed: {
     isDesktop() {
-      return this.$vuetify.breakpoint.mdAndUp
+      return this.$vuetify.breakpoint.lgAndUp
     }
   }
 }

@@ -14,7 +14,7 @@
       </v-card>
     </section>
     <section class="main">
-      <slot name="content"> </slot>
+      <slot name="content"></slot>
     </section>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     isDesktop() {
-      return this.$vuetify.breakpoint.mdAndUp
+      return this.$vuetify.breakpoint.lgAndUp
     }
   }
 }

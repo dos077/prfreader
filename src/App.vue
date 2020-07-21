@@ -42,11 +42,11 @@ export default {
     TitleBar
   },
   data: () => ({
-    drawerOn: null
+    drawerOn: false
   }),
   computed: {
-    isDesktop() {
-      return this.$vuetify.breakpoint.mdAndUp
+    isXlDesktop() {
+      return this.$vuetify.breakpoint.xlAndUp
     },
     ...mapState('alias', { alias: 'current' }),
     ...mapState('galleries', { galleriesCollectionName: 'collectionName' }),
@@ -59,6 +59,13 @@ export default {
           this.getProfolioMeta()
           this.getGalleriesMeta()
         }
+      },
+      immediate: true
+    },
+    isXlDesktop: {
+      handler(to) {
+        if (to) this.drawerOn = null
+        else this.drawerOn = false
       },
       immediate: true
     }
