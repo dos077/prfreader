@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/prfreader/404.html"
   },
   {
-    "revision": "40c7d64d669d3d9828e1",
+    "revision": "fe5c015bc46e8391a1e5",
     "url": "/prfreader/css/app.e720b511.css"
   },
   {
@@ -28,12 +28,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/prfreader/css/profolio.ff2f1ed9.css"
   },
   {
-    "revision": "76650e639dcc2e5725bc6ff2d16808f4",
+    "revision": "3a8cbfd783ddc968c961be78126fa167",
     "url": "/prfreader/index.html"
   },
   {
-    "revision": "40c7d64d669d3d9828e1",
-    "url": "/prfreader/js/app.6cc25e6d.js"
+    "revision": "fe5c015bc46e8391a1e5",
+    "url": "/prfreader/js/app.a7407320.js"
   },
   {
     "revision": "5270d1cba1d21b898e48",
