@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/prfreader/404.html"
   },
   {
-    "revision": "40c7d64d669d3d9828e1",
+    "revision": "74b13bc3e279e3e6407a",
     "url": "/prfreader/css/app.e720b511.css"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/prfreader/css/chunk-vendors.e6790403.css"
   },
   {
-    "revision": "89670361121aa8c230d8",
+    "revision": "99bebecdb1f7fc7b8b49",
     "url": "/prfreader/css/gallery.1ea150e9.css"
   },
   {
@@ -24,16 +24,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/prfreader/css/profile.76973a83.css"
   },
   {
-    "revision": "a55ddc2f08cddb87d25f",
+    "revision": "a4ad31bc3f9a6e463753",
     "url": "/prfreader/css/profolio.ff2f1ed9.css"
   },
   {
-    "revision": "76650e639dcc2e5725bc6ff2d16808f4",
+    "revision": "8680288a9b47dc0521dce2b2c989e197",
     "url": "/prfreader/index.html"
   },
   {
-    "revision": "40c7d64d669d3d9828e1",
-    "url": "/prfreader/js/app.6cc25e6d.js"
+    "revision": "74b13bc3e279e3e6407a",
+    "url": "/prfreader/js/app.c8e43dc6.js"
   },
   {
     "revision": "5270d1cba1d21b898e48",
@@ -44,8 +44,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/prfreader/js/chunk-vendors.b4b5a11d.js"
   },
   {
-    "revision": "89670361121aa8c230d8",
-    "url": "/prfreader/js/gallery.8367ddc5.js"
+    "revision": "99bebecdb1f7fc7b8b49",
+    "url": "/prfreader/js/gallery.ef112393.js"
   },
   {
     "revision": "f5da50de3640655f023d",
@@ -56,8 +56,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/prfreader/js/profile.b0cd4c5a.js"
   },
   {
-    "revision": "a55ddc2f08cddb87d25f",
-    "url": "/prfreader/js/profolio.d42f51cd.js"
+    "revision": "a4ad31bc3f9a6e463753",
+    "url": "/prfreader/js/profolio.8a2ad2cd.js"
   },
   {
     "revision": "457cf2f167a9e9e8ff25089496a47503",
