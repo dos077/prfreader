@@ -15,7 +15,7 @@
         style="justify-content: center;"
       >
         <v-tab
-          v-for="(section, index) in sections"
+          v-for="(section, index) in sortedSections"
           :key="section.id"
           @click.prevent="tabFocus(index)"
         >
@@ -25,7 +25,7 @@
     </template>
     <template v-slot:content>
       <v-container ref="wrapper" style="width: 90%; max-width: 50rem">
-        <v-row v-for="(section, index) in sections" :key="section.id" ref="sections">
+        <v-row v-for="(section, index) in sortedSections" :key="section.id" ref="sections">
           <v-col cols="12">
             <chips-section v-if="section.chips" :section="section" :focus="index === focusIndex" />
             <lines-section v-if="section.lines" :section="section" :focus="index === focusIndex" />
@@ -76,6 +76,14 @@ export default {
     ...mapState('profile', { sections: 'items', color: 'color' }),
     isDesktop() {
       return this.$vuetify.breakpoint.mdAndUp
+    },
+    sortedSections() {
+      if (!this.sections) return []
+      return [...this.sections].sort((a, b) => {
+        const aPrio = a.priority ? a.priority : 0
+        const bPrio = b.priority ? b.priority : 0
+        return bPrio - aPrio
+      })
     }
   },
   watch: {
@@ -83,12 +91,21 @@ export default {
       async handler() {
         await this.readProfileMeta()
         await this.readProfile()
-        this.checkViewSize()
-        window.addEventListener('resize', this.checkViewSize)
-        window.addEventListener('scroll', this.checkScroll)
       },
       immediate: true
     },
+    sortedSections: {
+      handler(to) {
+        if (to && to.length) {
+          window.removeEventListener('resize', this.checkViewSize)
+          window.removeEventListener('scroll', this.checkScroll)
+          this.checkViewSize()
+          window.addEventListener('resize', this.checkViewSize)
+          window.addEventListener('scroll', this.checkScroll)
+        }
+      },
+      immediate: true
+    }
   },
   mounted() {
     window.scrollTo(0, 1)
@@ -149,7 +166,7 @@ export default {
         let cloneHeight = this.scrollPoints[0]
         let index = 0
         while(cloneHeight < winHeight) {
-          this.cloneSections.push(this.sections[index])
+          this.cloneSections.push(this.sortedSections[index])
           cloneHeight += this.$refs.sections[index].offsetHeight
           index += 1
         }
