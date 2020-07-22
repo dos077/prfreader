@@ -1,20 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Notfound from '@/views/Notfound.vue'
+import Verify from '@/views/Verify.vue'
 import store from '@/store'
 
 const aliasVerify = async (to, from, next) => {
-  if (to.path === '/') return next()
+  if (to.meta && to.meta.verifyNotRequired) return next()
   const { alias } = to.params
   if (alias == null) return next('/')
-  if (alias === store.state.alias.id) {
+  const { current } = store.state.alias
+  if (current && alias === current.id) {
     return next()
   }
-  if (alias !== from.params.alias) {
-    await store.dispatch('alias/read', alias)
-    if (!store.state.alias.current || !store.state.alias.current.userId) return next('/')
-  }
-  next()
+  next(`/verify?redirectUrl=${to.path}&alias=${alias}`)
 }
 
 Vue.use(VueRouter)
@@ -67,9 +65,19 @@ const routes = [
     redirect: '/a/:alias/profile'
   },
   {
+    path: '/verify',
+    component: Verify,
+    meta: {
+      verifyNotRequired: true
+    }
+  },
+  {
     path: '/',
     name: 'noalias',
-    component: Notfound
+    component: Notfound,
+    meta: {
+      verifyNotRequired: true
+    }
   },
   { path: '*', redirect: '/' }
 ]

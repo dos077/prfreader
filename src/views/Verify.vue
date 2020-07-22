@@ -5,7 +5,7 @@
         <v-card outlined>
           <v-card-title>Loading User Profolio...</v-card-title>
           <v-card-text class="text-align-center">
-            <v-progress-circular indeterminate></v-progress-circular>
+            <v-progress-linear indeterminate />
           </v-card-text>
         </v-card>
       </v-col>
@@ -21,10 +21,19 @@ export default {
   computed: {
     ...mapState('alias', { profile: 'current' })
   },
-  async created() {
-    await this.loadProfile(this.$route.params.alias)
-    if (!this.profile || !this.profile.userId) this.$router.push('/')
-    else this.$router.push(this.$route.query.redirectUrl)
+  watch: {
+    profile: {
+      handler(to) {
+        if (to === undefined) return
+        if (!to || !to.userId) return this.$router.push('/')
+        if (this.$route.query.redirectUrl === this.$route.path) return this.$router.push('/')
+        this.$router.push(this.$route.query.redirectUrl)
+      },
+      immediate: true
+    }
+  },
+  mounted() {
+    this.loadProfile(this.$route.query.alias)
   },
   methods: {
     ...mapActions('alias', { loadProfile: 'read' })

@@ -5,11 +5,9 @@
   >
     <section class="nav" :class="`${bgColor} darken-2`">
       <v-card flat dark color="rgba(0, 0, 0, 0)">
-        <v-card-title>
-          <h1 class="display-2 mb-2">
-            {{ title }}
-          </h1>
-        </v-card-title>
+        <h1 class="mb-2 text-h4 text-md-h3 text-xl-h2 text-center">
+          {{ title }}
+        </h1>
         <slot name="nav"></slot>
       </v-card>
     </section>
@@ -28,7 +26,7 @@ export default {
   },
   computed: {
     isDesktop() {
-      return this.$vuetify.breakpoint.lgAndUp
+      return this.$vuetify.breakpoint.mdAndUp
     }
   }
 }
@@ -52,7 +50,7 @@ export default {
   }
   &.horizontal {
     height: 100%;
-    grid-template-columns: 412px auto;
+    grid-template-columns: minmax(406px, 30vw) auto;
     section {
       height: 100%;
     }

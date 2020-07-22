@@ -25,10 +25,10 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-content style="position: relative">
+    <v-main style="position: relative">
       <title-bar @toggleDrawer="drawerOn = !drawerOn"></title-bar>
       <router-view></router-view>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -42,11 +42,11 @@ export default {
     TitleBar
   },
   data: () => ({
-    drawerOn: false
+    drawerOn: null
   }),
   computed: {
-    isXlDesktop() {
-      return this.$vuetify.breakpoint.xlAndUp
+    isDesktop() {
+      return this.$vuetify.breakpoint.mdAndUp
     },
     ...mapState('alias', { alias: 'current' }),
     ...mapState('galleries', { galleriesCollectionName: 'collectionName' }),
@@ -61,13 +61,6 @@ export default {
         }
       },
       immediate: true
-    },
-    isXlDesktop: {
-      handler(to) {
-        if (to) this.drawerOn = null
-        else this.drawerOn = false
-      },
-      immediate: true
     }
   },
   methods: {
@@ -79,7 +72,7 @@ export default {
 </script>
 
 <style lang="scss">
-.content-grid {
+.spacer-grid {
   display: grid;
   min-height: 100vh;
   &.mobile {

@@ -10,7 +10,7 @@ export default {
   name: 'TitleBar',
   computed: {
     isDesktop() {
-      return this.$vuetify.breakpoint.lgAndUp
+      return this.$vuetify.breakpoint.mdAndUp
     }
   }
 }
@@ -21,7 +21,6 @@ export default {
   position: fixed;
   z-index: 5;
   top: 0;
-  left: 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
