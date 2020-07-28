@@ -47,9 +47,11 @@ export default {
 <style lang="scss" scoped>
 .image-grid {
   position: relative;
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin: 0 auto;
+  width: 100%;
 
   @media screen and (min-width: 769px) {
     left: 4px; 

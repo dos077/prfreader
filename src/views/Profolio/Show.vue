@@ -6,16 +6,17 @@
       aspect-ratio="1.5"
       width="100%"
       max-height="50vh"
-      class="sticky-img"
       :src="project.bannerImage.src"
-      @load="mountStickyController"
       style="position: relative"
     />
     <v-container id="read-body" :class="{ desktop: isDesktop }">
       <v-row>
         <v-col>
           <div ref="caption" class="sticky-caption">
-            <div class="blocks display-3">{{ project.name }}</div>
+            <h2 class="blocks display-3">
+              {{ project.name }}
+              <span class="highlighter" :class="`${color} ligthen-1`" />
+            </h2>
             <div></div>
             <div v-if="project.github || project.demo" class="blocks">
               <v-btn v-if="project.github" text :href="project.github">Github</v-btn>
@@ -32,7 +33,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import stickyCaptionsController from '../../helpers/stickyCaptions'
 import ProjectSection from './_section.vue'
 
 export default {
@@ -40,11 +40,9 @@ export default {
   components: {
     ProjectSection
   },
-  data: () => ({
-    stickyController: null
-  }),
+  data: () => ({ }),
   computed: {
-    ...mapState('profolio', { project: 'current' }),
+    ...mapState('profolio', { project: 'current', color: 'color' }),
     isDesktop() {
       return this.$vuetify.breakpoint.mdAndUp
     },
@@ -64,7 +62,6 @@ export default {
     }
   },
   destroyed() {
-    this.stickyController.stop()
   },
   methods: {
     ...mapActions('profolio', { read: 'read' }),
@@ -72,12 +69,6 @@ export default {
       const alias = this.$route.params.alias
       if (!alias) this.$router.push('/')
       else this.$router.push(`${alias}/profolio`)
-    },
-    mountStickyController() {
-      const { img, caption } = this.$refs
-      this.stickyController = stickyCaptionsController()
-      this.stickyController.set({ img: img.$el, caption })
-      this.stickyController.start()
     }
   }
 }
@@ -88,7 +79,6 @@ export default {
   width: 94%;
   max-width: 66em;
   margin: 0 auto;
-  background-color: white;
 
   &.desktop {
     width: 75%;
@@ -106,10 +96,20 @@ export default {
   z-index: 1;
   padding-bottom: 2rem;
   .blocks {
+    position: relative;
     display: inline-block;
     padding: 4px 4px 6px;
-    margin-bottom: 16px;
-    background-color: white;
+    margin-bottom: .6em;
+    line-height: 1.25em;
+    .highlighter {
+      display: block;
+      position: absolute;
+      z-index: -1;
+      left: 0;
+      bottom: 8px;
+      width: 100%;
+      height: .25em;
+    }
   }
 }
 </style>

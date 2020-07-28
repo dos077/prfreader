@@ -3,15 +3,15 @@
     id="maindiv"
     :class="{ content: true, vertical: !isDesktop, horizontal: isDesktop }"
   >
-    <section class="nav" :class="`${bgColor} darken-2`">
-      <v-card flat dark color="rgba(0, 0, 0, 0)">
+    <section class="nav" :class="`${bgColor} darken-3`">
+      <v-card flat dark color="rgba(0, 0, 0, 0)" class="pa-1">
         <h1 class="mb-2 text-h4 text-md-h3 text-xl-h2 text-center">
           {{ title }}
         </h1>
         <slot name="nav"></slot>
       </v-card>
     </section>
-    <section class="main">
+    <section class="main" :class="`${bgColor} lighten-5`">
       <slot name="content"></slot>
     </section>
   </div>
@@ -38,12 +38,12 @@ export default {
   display: grid;
   &.vertical {
     grid-template-columns: 1fr;
-    grid-template-rows: 212px auto;
+    grid-template-rows: 160px auto;
     section {
       max-width: 100vw;
     }
     .nav {
-      top: -146px;
+      top: -102px;
       z-index: 2;
       padding-top: 48px;
     }

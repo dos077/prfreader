@@ -1,45 +1,69 @@
 <template>
   <v-row>
     <v-col v-for="image in section.images" :key="image.src" :cols="imageOnly ? '6' : '12'" >
-      <v-img ref="img" :src="image.src" :aspect-ratio="imageOnly ? '0.8' : '1.8'" eager @load="mountStickyController"/>
+      <v-card tile>
+        <v-img ref="img"
+          :src="image.src"
+          :aspect-ratio="imageOnly ? '1' : '1.8'"
+          eager
+        />
+      </v-card>
     </v-col>
-    <v-col v-if="section.text && !imageOnly" cols="12">
+    <v-col v-if="textOnly" cols="12">
+      <p> {{ section.text }} </p>
+    </v-col>
+    <v-col v-else-if="section.text && !imageOnly" cols="12">
       <div ref="caption" class="sticky-caption">
-        <p v-if="!section.images"> {{ section.text }} </p>
-        <p v-else><span>{{ section.text }}</span></p>
+        <p>
+          <span class="blocks text-caption">
+            {{ section.text }}
+            <span class="highlighter" :class="`${color} ligthen-1`" />
+          </span>
+        </p>
       </div>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import stickyCaptionsController from '@/helpers/stickyCaptions'
+import { mapState } from 'vuex'
 
 export default {
   name: 'ProjectSection',
   props: {
     section: Object
   },
-  data: () => ({
-    stickyController: null
-  }),
+  data: () => ({ }),
   computed: {
+    ...mapState('profolio', { color: 'color' }),
+    textOnly() {
+      return !this.section.images || this.section.images.length === 0
+    },
     imageOnly() {
       return this.section.images && this.section.images.length > 1
-    }
-  },
-  destroyed() {
-    if (this.stickyCaptionsController) this.stickyController.stop()
-  },
-  methods: {
-    mountStickyController() {
-      if (this.section.images && this.section.images.length < 2 && this.section.text && !this.stickyController) {
-        const { img, caption } = this.$refs
-        this.stickyController = stickyCaptionsController()
-        this.stickyController.set({ img: img[0].$el, caption })
-        this.stickyController.start()
-      }
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.caption-text {
+  position: relative;
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #424242;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    bottom: 5px;
+    width: 100%;
+    height: 8px;
+    background: #ffffff;
+  }
+}
+</style>

@@ -1,14 +1,14 @@
 <template>
-  <v-hover v-slot:default="{ hover }" open-delay="200" close-delay="200">
+  <v-hover v-slot:default="{ hover }" open-delay="100" close-delay="200">
     <v-img
       :class="{
         'elevation-8': hover,
         'mr-1 mb-1': $vuetify.breakpoint.smAndDown,
-        'mr-3 mb-3': $vuetify.breakpoint.mdAndUp,
+        'mr-4 mb-4': $vuetify.breakpoint.mdAndUp,
       }"
       :aspect-ratio="containerAspect"
       max-width="380px"
-      :width="$vuetify.breakpoint.lgAndUp ? '25%' : '33%'"
+      :width="$vuetify.breakpoint.lgAndUp ? '24%' : '33%'"
       min-width="160px"
       max-height="285px"
       :src="image.src"
@@ -17,7 +17,7 @@
       ref="img"
     >
       <v-fade-transition v-if="hover">
-        <div v-if="image.title" class="caption">
+        <div v-if="image.title && hover" class="caption">
           <span class="display-1">{{ image.title }}</span>
         </div>
       </v-fade-transition>

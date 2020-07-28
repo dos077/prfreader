@@ -1,5 +1,5 @@
 <template>
-  <v-card :outlined="!focus">
+  <v-card :outlined="!focus" tile>
     <v-toolbar
       :color="focus ? `${color} lighten-4` : ''"
       :class="{ 'text--primary': focus, 'outfocus': !focus }"
