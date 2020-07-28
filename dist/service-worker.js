@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/prfreader/precache-manifest.dfad749a4f84561262b7e167184da01d.js"
+  "/prfreader/precache-manifest.c0845c87099a9dd3c96c4eba0814aba2.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "prfreader"});
