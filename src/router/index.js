@@ -2,12 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Notfound from '@/views/Notfound.vue'
 import Verify from '@/views/Verify.vue'
+import Landing from '@/views/Landing.vue'
 import store from '@/store'
 
 const aliasVerify = async (to, from, next) => {
   if (to.meta && to.meta.verifyNotRequired) return next()
   const { alias } = to.params
-  if (alias == null) return next('/')
+  if (alias == null) return next('/noalias')
   const { current } = store.state.alias
   if (current && alias === current.id) {
     return next()
@@ -72,14 +73,22 @@ const routes = [
     }
   },
   {
-    path: '/',
+    path: '/noalias',
     name: 'noalias',
     component: Notfound,
     meta: {
       verifyNotRequired: true
     }
   },
-  { path: '*', redirect: '/' }
+  {
+    path: '/',
+    name: 'landing',
+    component: Landing,
+    meta: {
+      verifyNotRequired: true
+    }
+  },
+  { path: '*', redirect: '/noalias' }
 ]
 
 const router = new VueRouter({

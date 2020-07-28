@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-if="alias" v-model="drawerOn" app dark color="#212121">
+    <v-navigation-drawer v-if="alias" v-model="drawerOn" app dark color="blue-grey darken-4" mobile-breakpoint="1400">
       <v-list nav>
         <v-list-item two-line>
           <v-list-item-avatar v-if="alias.photoURL">
@@ -26,7 +26,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-main style="position: relative">
-      <title-bar @toggleDrawer="drawerOn = !drawerOn"></title-bar>
+      <title-bar v-if="alias" @toggleDrawer="drawerOn = !drawerOn"></title-bar>
       <router-view></router-view>
     </v-main>
   </v-app>

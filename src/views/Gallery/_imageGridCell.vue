@@ -1,11 +1,14 @@
 <template>
   <v-hover v-slot:default="{ hover }" open-delay="200" close-delay="200">
     <v-img
-      class="mr-1 mb-1"
-      :class="{ 'elevation-8': hover }"
+      :class="{
+        'elevation-8': hover,
+        'mr-1 mb-1': $vuetify.breakpoint.smAndDown,
+        'mr-3 mb-3': $vuetify.breakpoint.mdAndUp,
+      }"
       :aspect-ratio="containerAspect"
       max-width="380px"
-      width="33%"
+      :width="$vuetify.breakpoint.lgAndUp ? '25%' : '33%'"
       min-width="160px"
       max-height="285px"
       :src="image.src"

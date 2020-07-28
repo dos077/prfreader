@@ -25,7 +25,7 @@ export default {
     profile: {
       handler(to) {
         if (to === undefined) return
-        if (!to || !to.userId) return this.$router.push('/')
+        if (!to || !to.userId) return this.$router.push('/noalias')
         if (this.$route.query.redirectUrl === this.$route.path) return this.$router.push('/')
         this.$router.push(this.$route.query.redirectUrl)
       },
