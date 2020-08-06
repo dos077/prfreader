@@ -10,7 +10,7 @@
         active-class="current"
         style="justify-content: center;"
       >
-        <v-tab v-for="project in profolio" :key="project.id" :to="buildPath(project.id)">
+        <v-tab v-for="project in sortedProfolio" :key="project.id" :to="buildPath(project.id)">
           {{ project.name }}
         </v-tab>
       </v-tabs>
@@ -23,6 +23,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { compareNames } from '@/helpers/sorts'
 import NavContent from '@/views/components/NavContent.vue'
 
 export default {
@@ -39,6 +40,9 @@ export default {
     ...mapState('profolio', { profolio: 'items', collectionName: 'collectionName', color: 'color' }),
     isDesktop() {
       return this.$vuetify.breakpoint.mdAndUp
+    },
+    sortedProfolio() {
+      return [...this.profolio].sort(compareNames)
     }
   },
   mounted() {

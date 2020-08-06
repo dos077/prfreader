@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <v-container :fluid="$vuetify.breakpoint.mdAndDown">
     <v-card
       v-for="project in projects" :key="project.id"
-      style="width: 94%; max-width: 1080px"
-      class="mx-auto my-4"
+      style="width: 100%; max-width: 790px"
+      class="mx-auto mb-4"
       :to="buildPath(project.id)"
       ripple
       hover
@@ -39,7 +39,7 @@
         </v-img>
       </v-hover>
     </v-card>
-  </div>
+  </v-container>
 </template>
 
 <script>

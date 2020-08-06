@@ -5,7 +5,7 @@
   >
     <section class="nav" :class="`${bgColor} darken-3`">
       <v-card flat dark color="rgba(0, 0, 0, 0)" class="pa-1">
-        <h1 class="mb-2 text-h4 text-md-h3 text-xl-h2 text-center">
+        <h1 class="mb-2 text-h4 text-lg-h3 text-xl-h2 text-center">
           {{ title }}
         </h1>
         <slot name="nav"></slot>
@@ -51,7 +51,7 @@ export default {
   }
   &.horizontal {
     height: 100%;
-    grid-template-columns: minmax(406px, 30vw) auto;
+    grid-template-columns: minmax(320px, 33vw) auto;
     section {
       height: 100%;
     }

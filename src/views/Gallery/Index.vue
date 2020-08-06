@@ -10,7 +10,7 @@
         active-class="current"
         style="justify-content: center;"
       >
-        <v-tab v-for="gallery in galleries" :key="gallery.id" :to="buildPath(gallery.id)">
+        <v-tab v-for="gallery in sortedGalleries" :key="gallery.id" :to="buildPath(gallery.id)">
           {{ gallery.name }}
         </v-tab>
       </v-tabs>
@@ -23,7 +23,9 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { compareNames } from '@/helpers/sorts'
 import NavContent from '@/views/components/NavContent.vue'
+
 
 export default {
   name: 'Galleries',
@@ -39,6 +41,9 @@ export default {
     ...mapState('galleries', { galleries: 'items', collectionName: 'collectionName', color: 'color' }),
     isDesktop() {
       return this.$vuetify.breakpoint.mdAndUp
+    },
+    sortedGalleries() {
+      return [...this.galleries].sort(compareNames)
     }
   },
   mounted() {

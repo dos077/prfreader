@@ -9,7 +9,7 @@
     :max-width="maxWidth"
     :min-width="minWidth"
     :src="image.src"
-    @click="$emit('openImage')"
+    @click="$emit('open-image')"
     @load="getImgDimension"
     @mouseenter="hover = true"
     @mouseleave="hover = false"
@@ -55,11 +55,11 @@ export default {
       return this.imageAspect / maxAspect * 100
     },
     minWidth() {
-      if (this.$vuetify.breakpoint.mdAndUp) return '280px'
+      if (this.$vuetify.breakpoint.smAndUp) return '280px'
       return '174px'
     },
     maxWidth() {
-      if (this.$vuetify.breakpoint.mdAndUp) return '594px'
+      if (this.$vuetify.breakpoint.smAndUp) return '594px'
       return '384px'
     }
   },
@@ -86,5 +86,6 @@ export default {
     padding: 1rem;
     background-color: rgba(0, 0, 0, 0.7);
     color: #fafafa;
+    cursor: pointer;
   }
 </style>

@@ -24,7 +24,7 @@
       </v-tabs>
     </template>
     <template v-slot:content>
-      <v-container ref="wrapper" style="width: 90%; max-width: 50rem">
+      <v-container ref="wrapper" style="width: 96%; max-width: 40rem">
         <v-row v-for="(section, index) in sortedSections" :key="section.id" ref="sections">
           <v-col cols="12">
             <chips-section v-if="section.chips" :section="section" :focus="index === focusIndex" />
@@ -35,7 +35,7 @@
           </v-col>
         </v-row>
       </v-container>
-      <v-container v-if="isLoopOn" ref="clones" style="width: 90%; max-width: 50rem">
+      <v-container v-if="isLoopOn" ref="clones" style="width: 96%; max-width: 40rem">
         <v-row v-for="(section, index) in cloneSections" :key="index">
           <v-col cols="12">
             <chips-section v-if="section.chips" :section="section" :focus="index === focusIndex" />
@@ -148,7 +148,7 @@ export default {
           const topLimit = this.isDesktop ? 0 : 64
           const cloneTop = this.$refs.clones.getBoundingClientRect().y
           if (cloneTop < topLimit) {
-            const yTarget = this.isDesktop ? 1 : 288
+            const yTarget = this.isDesktop ? 1 : 100
             return window.scrollTo(0, yTarget)
           }
           const wrapperBottom = this.$refs.wrapper.getBoundingClientRect().bottom

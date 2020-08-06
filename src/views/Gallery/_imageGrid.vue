@@ -1,10 +1,10 @@
 <template>
-  <div class="image-grid mt-1 pl-1">
+  <div class="image-grid mt-1 pl-1 mt-md-3 pl-md-3">
     <image-grid-cell
       v-for="(image, index) in images"
       :key="image.src"
       :image="image"
-      @openImage="imgIndex = index"
+      @open-image="imgIndex = index"
     />
     <image-pop-up
       :image="currentImg"
