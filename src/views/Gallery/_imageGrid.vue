@@ -1,5 +1,5 @@
 <template>
-  <div class="image-grid mt-1 ml-1">
+  <div class="image-grid mt-1 pl-1">
     <image-grid-cell
       v-for="(image, index) in images"
       :key="image.src"
@@ -49,7 +49,6 @@ export default {
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   margin: 0 auto;
   width: 100%;
 

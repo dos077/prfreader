@@ -20,7 +20,7 @@
             </p>
           </v-col>
           <v-col :cols="lgCols" class="image-block">
-            <img class="frame elevation-2" src="profolio.jpg" />
+            <img class="frame elevation-2" src="gallery.jpg" />
           </v-col>
         </v-row>
       </v-container>
@@ -29,12 +29,42 @@
       <v-container>
         <v-row dark class="py-4">
           <v-col :cols="lgCols" order-sm="2" class="text-block negative">
-            <h2 class="ttl">Tactile UX</h2>
+            <h2 class="ttl">Functional Design</h2>
             <!-- eslint-disable-next-line -->
-            <p class="body">Bold but soothing visual palatte for great legitability without fatiquing contrast. Contrasting fonts for distinctive UI without visual clutters. This is an app design by a user and meant to be used by anyone, anytime, day or night.</p>
+            <p class="body">Standard format resume with optional chips section for visual flairs on simple skill/interest list. Blog format for more detailed explanations on projects, with in-line photo(s) and caption.</p>
           </v-col>
           <v-col :cols="lgCols" order-sm="1" class="image-block alternate">
-            <img src="tablet.jpg" class="frame elevation-2" />
+            <img src="project.jpg" class="frame elevation-2" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </section>
+    <section>
+      <v-container>
+        <v-row class="py-4">
+          <v-col :cols="lgCols" class="text-block">
+            <h2 class="ttl">Themable</h2>
+            <!-- eslint-disable-next-line -->
+            <p class="body">
+              Themes to your favorite color, even in the classic black and white. Present your works in simple gallery or blog style. Make it fun, make it your, without making it complicated.
+            </p>
+          </v-col>
+          <v-col :cols="lgCols" class="image-block">
+            <img src="gallery-tab.jpg" class="frame elevation-2" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </section>
+    <section class="alternate">
+      <v-container>
+        <v-row dark class="py-4">
+          <v-col :cols="lgCols" order-sm="2" class="text-block negative">
+            <h2 class="ttl">Material Design</h2>
+            <!-- eslint-disable-next-line -->
+            <p class="body">Built with Google's design principals, your portfolio will be presented in a simple, modern, accessible manner to virtually anyone.</p>
+          </v-col>
+          <v-col :cols="lgCols" order-sm="1" class="image-block alternate">
+            <img src="resume.jpg" class="frame elevation-2" />
           </v-col>
         </v-row>
       </v-container>

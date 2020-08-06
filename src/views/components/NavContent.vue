@@ -36,6 +36,7 @@ export default {
 .content {
   position: relative;
   display: grid;
+  min-height: 100vh;
   &.vertical {
     grid-template-columns: 1fr;
     grid-template-rows: 160px auto;
