@@ -24,24 +24,31 @@
       </v-tabs>
     </template>
     <template v-slot:content>
-      <v-container ref="wrapper" style="width: 96%; max-width: 40rem">
+      <v-container
+        ref="wrapper"
+        style="width: 96%; max-width: 40rem; padding-bottom: 0;"
+      >
         <v-row v-for="(section, index) in sortedSections" :key="section.id" ref="sections">
           <v-col cols="12">
             <chips-section v-if="section.chips" :section="section" :focus="index === focusIndex" />
             <lines-section v-if="section.lines" :section="section" :focus="index === focusIndex" />
           </v-col>
-          <v-col v-if="index < sections.length - 1" cols="12">
+          <v-col cols="12">
             <v-divider class="my-2" />
           </v-col>
         </v-row>
       </v-container>
-      <v-container v-if="isLoopOn" ref="clones" style="width: 96%; max-width: 40rem">
+      <v-container
+        v-if="isLoopOn"
+        ref="clones"
+        style="width: 96%; max-width: 40rem; padding-top: 0;"
+      >
         <v-row v-for="(section, index) in cloneSections" :key="index">
           <v-col cols="12">
             <chips-section v-if="section.chips" :section="section" :focus="index === focusIndex" />
             <lines-section v-if="section.lines" :section="section" :focus="index === focusIndex" />
           </v-col>
-          <v-col v-if="index < sections.length - 1" cols="12">
+          <v-col cols="12">
             <v-divider class="my-2" />
           </v-col>
         </v-row>

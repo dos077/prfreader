@@ -13,7 +13,7 @@
           v-for="(chip, index) in section.chips"
           :key="index"
           :color="focus ? `${color} lighten-4` : `${color} lighten-5`"
-          class="mr-4 mb-4"
+          class="mx-2 my-2 mx-md-4 my-md-3"
         >
           <v-icon v-if="chip.icon" class="mr-2" :class="{ 'outfocus': !focus }">{{ chip.icon }}</v-icon>
           <span :class="{ 'outfocus': !focus }">{{ chip.text }}</span>
