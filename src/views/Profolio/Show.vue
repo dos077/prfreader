@@ -56,6 +56,7 @@ export default {
         if(to) {
           await this.read(to)
           if(!this.project) this.backtoLanding()
+          else this.$vuetify.goTo(0)
         }
       },
       immediate: true

@@ -23,6 +23,7 @@ export default {
         if(to) {
           await this.readGallery(to)
           if(!this.gallery) this.backtoLanding()
+          else this.$vuetify.goTo(0)
         }
       },
       immediate: true

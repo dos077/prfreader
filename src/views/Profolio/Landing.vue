@@ -26,13 +26,12 @@
           >
             <v-card
               dark
-              :color="color + (hover ? ' darken-4' : ' darken-2')"
-              width="50%"
-              max-width="360px"
+              :color="color + ' darken-4'"
+              :max-width="$vuetify.breakpoint.smAndDown ? '70%' : '360px'"
               max-height="100%"
             >
-              <v-card-title class="display-1">
-              {{ project.name }}
+              <v-card-title class="text-h5 text-sm-h4">
+                {{ project.name }}
               </v-card-title>
             </v-card>
           </div>
